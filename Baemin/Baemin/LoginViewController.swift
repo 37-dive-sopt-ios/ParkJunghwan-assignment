@@ -117,8 +117,13 @@ final class LoginViewController: UIViewController {
         loginButton.isEnabled = false
         
         // 입력값 변경 시 로그인 버튼 상태 갱신
-        idTextField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
+        idTextField.addTarget(self, action: #selector(updateLoginButtonState), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(updateLoginButtonState), for: .editingChanged)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.endEditing(true)
     }
     
     // MARK: - UI & Layout
@@ -193,13 +198,7 @@ final class LoginViewController: UIViewController {
         pushToWelcomeVC()
     }
     
-    @objc
-    private func passwordVisibilityButtonDidTap(_ sender: UIButton) {
-        passwordTextField.isSecureTextEntry.toggle()
-        let imageName = passwordTextField.isSecureTextEntry ? "eye_slash" : "eye"
-        sender.setImage(UIImage(named: imageName), for: .normal)
-    }
-    
+    // 텍스트가 활성화 되면 버튼 보이게
     @objc
     private func textFieldEditingDidBegin(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.baeminBlack.cgColor
@@ -210,6 +209,7 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    // 텍스트가 비활성화 되면 버튼 안 보이게
     @objc
     private func textFieldEditingDidEnd(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.gray200.cgColor
@@ -219,6 +219,15 @@ final class LoginViewController: UIViewController {
         }
     }
     
+    // 눈 버튼 작동
+    @objc
+    private func passwordVisibilityButtonDidTap(_ sender: UIButton) {
+        passwordTextField.isSecureTextEntry.toggle()
+        let imageName = passwordTextField.isSecureTextEntry ? "eye_slash" : "eye"
+        sender.setImage(UIImage(named: imageName), for: .normal)
+    }
+    
+    // 지우기 버튼 작동
     @objc
     private func clearPasswordField() {
         passwordTextField.text = ""
@@ -228,28 +237,19 @@ final class LoginViewController: UIViewController {
     private func findAccountButtonTapped() {
         print("계정 찾기 버튼 탭됨")
     }
-}
-
- // MARK: - UI State Updates
-extension LoginViewController {
+    
+    // 로그인 버튼 활성화
+    @objc
     private func updateLoginButtonState() {
         let isIDFilled = !(idTextField.text?.isEmpty ?? true)
         let isPasswordFilled = !(passwordTextField.text?.isEmpty ?? true)
         
-        if isIDFilled && isPasswordFilled {
-            loginButton.isEnabled = true
-            loginButton.backgroundColor = .mint500
-        } else {
-            loginButton.isEnabled = false
-            loginButton.backgroundColor = .gray200
-        }
-    }
-
-    @objc
-    private func textFieldEditingChanged(_ textField: UITextField) {
-        updateLoginButtonState()
+        loginButton.isEnabled = isIDFilled && isPasswordFilled
+        loginButton.backgroundColor = loginButton.isEnabled ? .mint500 : .gray200
     }
 }
+
+ // MARK: - UI State Updates
 
 extension LoginViewController: WelcomeViewControllerDelegate {
     func didTapBackButton() {
@@ -257,8 +257,6 @@ extension LoginViewController: WelcomeViewControllerDelegate {
         idTextField.text = ""
         passwordTextField.text = ""
         updateLoginButtonState()
-        // 포커스 해제
-        view.endEditing(true)
     }
 }
 
