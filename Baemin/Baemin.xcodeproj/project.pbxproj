@@ -8,14 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		88B349182EB1FDA600E6738A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88B349172EB1FDA600E6738A /* SnapKit */; };
+		88B34C0D2EC0C91800E6738A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 88B34C0C2EC0C91800E6738A /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		88B348A22EB1F8E700E6738A /* Baemin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baemin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88B348A22EB1F8E700E6738A /* Baemin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Baemin.app; path = "/Users/junghwan/Documents/GitHub/ParkJunghwan-assignment/Baemin/build/Debug-iphoneos/Baemin.app"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		88B348B42EB1F8E900E6738A /* Exceptions for "Baemin" folder in "Baemin" target */ = {
+		88B34C092EC0849A00E6738A /* Exceptions for "Baemin" folder in "Baemin" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -25,10 +26,10 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		88B348A42EB1F8E700E6738A /* Baemin */ = {
+		88B34BF62EC0849A00E6738A /* Baemin */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				88B348B42EB1F8E900E6738A /* Exceptions for "Baemin" folder in "Baemin" target */,
+				88B34C092EC0849A00E6738A /* Exceptions for "Baemin" folder in "Baemin" target */,
 			);
 			path = Baemin;
 			sourceTree = "<group>";
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B349182EB1FDA600E6738A /* SnapKit in Frameworks */,
+				88B34C0D2EC0C91800E6738A /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,17 +52,8 @@
 		88B348992EB1F8E700E6738A = {
 			isa = PBXGroup;
 			children = (
-				88B348A42EB1F8E700E6738A /* Baemin */,
-				88B348A32EB1F8E700E6738A /* Products */,
+				88B34BF62EC0849A00E6738A /* Baemin */,
 			);
-			sourceTree = "<group>";
-		};
-		88B348A32EB1F8E700E6738A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				88B348A22EB1F8E700E6738A /* Baemin.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -79,11 +72,12 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				88B348A42EB1F8E700E6738A /* Baemin */,
+				88B34BF62EC0849A00E6738A /* Baemin */,
 			);
 			name = Baemin;
 			packageProductDependencies = (
 				88B349172EB1FDA600E6738A /* SnapKit */,
+				88B34C0C2EC0C91800E6738A /* Then */,
 			);
 			productName = Baemin;
 			productReference = 88B348A22EB1F8E700E6738A /* Baemin.app */;
@@ -116,9 +110,10 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				88B349162EB1FDA600E6738A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				88B34C0B2EC0C91800E6738A /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 88B348A32EB1F8E700E6738A /* Products */;
+			productRefGroup = 88B348992EB1F8E700E6738A;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -362,6 +357,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		88B34C0B2EC0C91800E6738A /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -369,6 +372,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88B349162EB1FDA600E6738A /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		88B34C0C2EC0C91800E6738A /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88B34C0B2EC0C91800E6738A /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

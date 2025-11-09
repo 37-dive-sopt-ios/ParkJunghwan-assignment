@@ -5,8 +5,8 @@
 //  Created by 박정환 on 10/11/25.
 //
 
-import Foundation
 import UIKit
+
 import SnapKit
 
 protocol WelcomeViewControllerDelegate: AnyObject {

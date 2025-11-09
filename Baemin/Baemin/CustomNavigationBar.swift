@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import SnapKit
 
 final class CustomNavigationBar: UIView {
@@ -33,8 +34,8 @@ final class CustomNavigationBar: UIView {
     init(title: String) {
         super.init(frame: .zero)
         titleLabel.text = title
-        setupUI()
-        setupLayout()
+        setUI()
+        setLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -43,17 +44,13 @@ final class CustomNavigationBar: UIView {
     
     
     // MARK: - Setup
-    private func setupUI() {
-        addSubview(backButton)
-        addSubview(titleLabel)
-
-        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    private func setUI() {
+        self.backgroundColor = .white
+        
+        addSubviews(backButton, titleLabel)
     }
     
-    private func setupLayout() {
-        addSubview(backButton)
-        addSubview(titleLabel)
-        
+    private func setLayout() {
         backButton.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(8)
             $0.centerY.equalToSuperview()

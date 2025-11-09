@@ -6,7 +6,9 @@
 //
 
 import UIKit
+
 import SnapKit
+import Then
 
 final class LoginViewController: UIViewController {
     
@@ -14,7 +16,7 @@ final class LoginViewController: UIViewController {
         
     private let navigationBar = CustomNavigationBar(title: "이메일 또는 아이디로 계속")
 
-    private lazy var idTextField: UITextField = {
+    private var idTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "아이디"
         textField.font = UIFont(name: "Pretendard-Regualr", size:14)
@@ -27,7 +29,7 @@ final class LoginViewController: UIViewController {
         return textField
     }()
     
-    private lazy var passwordTextField: UITextField = {
+    private var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "비밀번호"
         textField.font = UIFont(name: "Pretendard-Regualr", size:14)
@@ -67,35 +69,28 @@ final class LoginViewController: UIViewController {
         return button
     }()
     
+    private let findAccountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "계정 찾기"
+        label.font = UIFont(name: "Pretendard-Regular", size: 14)
+        label.textColor = .black
+        return label
+    }()
+    
     private let findAccountButton: UIButton = {
         let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "chevron_right"), for: .normal)
         button.tintColor = .black
-
-        // 텍스트 라벨
-        let titleLabel = UILabel()
-        titleLabel.text = "계정 찾기"
-        titleLabel.font = UIFont(name: "Pretendard-Regular", size: 14)
-        titleLabel.textColor = .black
-
-        // 이미지
-        let arrowImageView = UIImageView(image: UIImage(named: "chevron_right"))
-        arrowImageView.contentMode = .scaleAspectFit
-        arrowImageView.tintColor = .black
-
-        // 스택뷰 구성
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, arrowImageView])
+        button.addTarget(self, action: #selector(findAccountButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var findAccountStackView: UIStackView = {
+        let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = 4
-        stackView.isUserInteractionEnabled = false // ← 버튼 터치 충돌 방지
-
-        button.addSubview(stackView)
-        stackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-
-        button.addTarget(self, action: #selector(findAccountButtonTapped), for: .touchUpInside)
-        return button
+        return stackView
     }()
     
     
@@ -121,8 +116,8 @@ final class LoginViewController: UIViewController {
         passwordTextField.addTarget(self, action: #selector(updateLoginButtonState), for: .editingChanged)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         view.endEditing(true)
     }
     
@@ -132,9 +127,12 @@ final class LoginViewController: UIViewController {
     }
     
     private func setLayout() {
-        [navigationBar, idTextField, passwordTextField, loginButton, findAccountButton, clearButton, eyeButton].forEach {
+        [navigationBar, idTextField, passwordTextField, loginButton, findAccountStackView, clearButton, eyeButton].forEach {
             self.view.addSubview($0)
         }
+        
+        findAccountStackView.addArrangedSubview(findAccountLabel)
+        findAccountStackView.addArrangedSubview(findAccountButton)
         
         clearButton.isHidden = true
         eyeButton.isHidden = true
@@ -175,7 +173,7 @@ final class LoginViewController: UIViewController {
             $0.height.equalTo(48)
         }
         
-        findAccountButton.snp.makeConstraints {
+        findAccountStackView.snp.makeConstraints {
             $0.top.equalTo(loginButton.snp.bottom).offset(32)
             $0.centerX.equalToSuperview()
         }
