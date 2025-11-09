@@ -16,82 +16,21 @@ final class LoginViewController: UIViewController {
         
     private let navigationBar = CustomNavigationBar(title: "이메일 또는 아이디로 계속")
 
-    private var idTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "아이디"
-        textField.font = UIFont(name: "Pretendard-Regualr", size:14)
-        textField.layer.cornerRadius = 4
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.gray200.cgColor
-        // 텍스트 필드 좌측 패딩 추가
-        textField.addLeftPadding()
-        textField.leftViewMode = .always
-        return textField
-    }()
+    private let idTextField = UITextField()
     
-    private var passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "비밀번호"
-        textField.font = UIFont(name: "Pretendard-Regualr", size:14)
-        textField.isSecureTextEntry = true
-        textField.layer.cornerRadius = 4
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.gray200.cgColor
-        // 텍스트 필드 좌측 패딩 추가
-        textField.addLeftPadding()
-        textField.leftViewMode = .always
-        
-        return textField
-    }()
+    private let passwordTextField = UITextField()
     
-    private lazy var loginButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .gray200
-        button.setTitle("로그인", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Pretendard-Bold", size: 18)
-        button.layer.cornerRadius = 4
-        button.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
-        return button
-    }()
+    private let loginButton = UIButton()
     
-    private lazy var clearButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "btn_cancel"), for: .normal)
-        button.addTarget(self, action: #selector(clearPasswordField), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var eyeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "eye_slash"), for: .normal)
-        button.addTarget(self, action: #selector(passwordVisibilityButtonDidTap), for: .touchUpInside)
-        return button
-    }()
+    private let clearButton = UIButton()
     
-    private let findAccountLabel: UILabel = {
-        let label = UILabel()
-        label.text = "계정 찾기"
-        label.font = UIFont(name: "Pretendard-Regular", size: 14)
-        label.textColor = .black
-        return label
-    }()
+    private let eyeButton = UIButton()
     
-    private let findAccountButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "chevron_right"), for: .normal)
-        button.tintColor = .black
-        button.addTarget(self, action: #selector(findAccountButtonTapped), for: .touchUpInside)
-        return button
-    }()
+    private let findAccountLabel = UILabel()
     
-    private lazy var findAccountStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.spacing = 4
-        return stackView
-    }()
+    private let findAccountButton = UIButton(type: .system)
+    
+    private let findAccountStackView = UIStackView()
     
     
     // MARK: - Life Cycle
@@ -100,6 +39,7 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
+        setStyle()
         setLayout()
 
         // 텍스트필드 편집 이벤트 감지
@@ -124,6 +64,66 @@ final class LoginViewController: UIViewController {
     // MARK: - UI & Layout
     private func setUI() {
         self.view.backgroundColor = .white
+    }
+    
+    private func setStyle() {
+        idTextField.do {
+            $0.placeholder = "아이디"
+            $0.font = UIFont(name: "Pretendard-Regualr", size: 14)
+            $0.layer.cornerRadius = 4
+            $0.layer.borderWidth = 1
+            $0.layer.borderColor = UIColor.gray200.cgColor
+            $0.addLeftPadding()
+            $0.leftViewMode = .always
+        }
+        
+        passwordTextField.do {
+            $0.placeholder = "비밀번호"
+            $0.font = UIFont(name: "Pretendard-Regualr", size: 14)
+            $0.isSecureTextEntry = true
+            $0.layer.cornerRadius = 4
+            $0.layer.borderWidth = 1
+            $0.layer.borderColor = UIColor.gray200.cgColor
+            $0.addLeftPadding()
+            $0.leftViewMode = .always
+        }
+        
+        loginButton.do {
+            $0.backgroundColor = .gray200
+            $0.setTitle("로그인", for: .normal)
+            $0.setTitleColor(.white, for: .normal)
+            $0.titleLabel?.font = UIFont(name: "Pretendard-Bold", size: 18)
+            $0.layer.cornerRadius = 4
+            $0.addTarget(self, action: #selector(loginButtonDidTap), for: .touchUpInside)
+        }
+        
+        clearButton.do {
+            $0.setImage(UIImage(named: "btn_cancel"), for: .normal)
+            $0.addTarget(self, action: #selector(clearPasswordField), for: .touchUpInside)
+        }
+        
+        eyeButton.do {
+            $0.setImage(UIImage(named: "eye_slash"), for: .normal)
+            $0.addTarget(self, action: #selector(passwordVisibilityButtonDidTap), for: .touchUpInside)
+        }
+        
+        findAccountLabel.do {
+            $0.text = "계정 찾기"
+            $0.font = UIFont(name: "Pretendard-Regular", size: 14)
+            $0.textColor = .black
+        }
+        
+        findAccountButton.do {
+            $0.setImage(UIImage(named: "chevron_right"), for: .normal)
+            $0.tintColor = .black
+            $0.addTarget(self, action: #selector(findAccountButtonTapped), for: .touchUpInside)
+        }
+        
+        findAccountStackView.do {
+            $0.axis = .horizontal
+            $0.alignment = .center
+            $0.spacing = 4
+        }
     }
     
     private func setLayout() {
