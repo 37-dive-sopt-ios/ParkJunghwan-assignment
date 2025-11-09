@@ -249,7 +249,7 @@ final class LoginViewController: UIViewController {
 
  // MARK: - UI State Updates
 
-extension LoginViewController: WelcomeViewControllerDelegate {
+extension LoginViewController: BackButtonDelegate {
     func didTapBackButton() {
         // 텍스트 초기화
         idTextField.text = ""

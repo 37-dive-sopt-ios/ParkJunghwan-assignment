@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-protocol WelcomeViewControllerDelegate: AnyObject {
+protocol BackButtonDelegate: AnyObject {
     func didTapBackButton()
 }
 
@@ -18,7 +18,7 @@ final class WelcomeViewController: UIViewController {
     
     var name: String?
     
-    weak var delegate: WelcomeViewControllerDelegate?
+    weak var delegate: BackButtonDelegate?
     
     // MARK: - UI Components
 
