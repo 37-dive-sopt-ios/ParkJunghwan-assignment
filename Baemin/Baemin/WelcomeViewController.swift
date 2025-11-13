@@ -103,16 +103,22 @@ final class WelcomeViewController: UIViewController {
         
         backToLoginButton.do {
             $0.backgroundColor = .mint500
-            $0.setTitle("뒤로가기", for: .normal)
+            $0.setTitle("메인으로 가기", for: .normal)
             $0.setTitleColor(.white, for: .normal)
             $0.titleLabel?.font = UIFont(name: "Pretendard-Bold", size: 18)
-            $0.addTarget(self, action: #selector(backToLoginButtonDidTap), for: .touchUpInside)
+            $0.addTarget(self, action: #selector(goToMain), for: .touchUpInside)
         }
     }
     
     private func bindID() {
         guard let username = name else { return }
         self.welcomeLabel.text = "\(username)님 반가워요!"
+    }
+    
+    @objc
+    private func goToMain() {
+        let homeVC = HomeViewController()
+        navigationController?.pushViewController(homeVC, animated: true)
     }
     
     @objc

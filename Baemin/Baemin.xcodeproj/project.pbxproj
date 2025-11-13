@@ -7,29 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88B349182EB1FDA600E6738A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88B349172EB1FDA600E6738A /* SnapKit */; };
-		88B34C0D2EC0C91800E6738A /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 88B34C0C2EC0C91800E6738A /* Then */; };
+		88ECFCC02EC4AE4100E80317 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88ECFCBF2EC4AE4100E80317 /* SnapKit */; };
+		88ECFCC32EC4AE7400E80317 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 88ECFCC22EC4AE7400E80317 /* Then */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		88B348A22EB1F8E700E6738A /* Baemin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Baemin.app; path = "/Users/junghwan/Documents/GitHub/ParkJunghwan-assignment/Baemin/build/Debug-iphoneos/Baemin.app"; sourceTree = "<absolute>"; };
+		88ECFC712EC4AD4300E80317 /* Baemin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baemin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		88B34C092EC0849A00E6738A /* Exceptions for "Baemin" folder in "Baemin" target */ = {
+		88ECFC832EC4AD4500E80317 /* Exceptions for "Baemin" folder in "Baemin" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 88B348A12EB1F8E700E6738A /* Baemin */;
+			target = 88ECFC702EC4AD4300E80317 /* Baemin */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		88B34BF62EC0849A00E6738A /* Baemin */ = {
+		88ECFC732EC4AD4300E80317 /* Baemin */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				88B34C092EC0849A00E6738A /* Exceptions for "Baemin" folder in "Baemin" target */,
+				88ECFC832EC4AD4500E80317 /* Exceptions for "Baemin" folder in "Baemin" target */,
 			);
 			path = Baemin;
 			sourceTree = "<group>";
@@ -37,93 +37,101 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		88B3489F2EB1F8E700E6738A /* Frameworks */ = {
+		88ECFC6E2EC4AD4300E80317 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88B349182EB1FDA600E6738A /* SnapKit in Frameworks */,
-				88B34C0D2EC0C91800E6738A /* Then in Frameworks */,
+				88ECFCC02EC4AE4100E80317 /* SnapKit in Frameworks */,
+				88ECFCC32EC4AE7400E80317 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		88B348992EB1F8E700E6738A = {
+		88ECFC682EC4AD4300E80317 = {
 			isa = PBXGroup;
 			children = (
-				88B34BF62EC0849A00E6738A /* Baemin */,
+				88ECFC732EC4AD4300E80317 /* Baemin */,
+				88ECFC722EC4AD4300E80317 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		88ECFC722EC4AD4300E80317 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88ECFC712EC4AD4300E80317 /* Baemin.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		88B348A12EB1F8E700E6738A /* Baemin */ = {
+		88ECFC702EC4AD4300E80317 /* Baemin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88B348B52EB1F8E900E6738A /* Build configuration list for PBXNativeTarget "Baemin" */;
+			buildConfigurationList = 88ECFC842EC4AD4500E80317 /* Build configuration list for PBXNativeTarget "Baemin" */;
 			buildPhases = (
-				88B3489E2EB1F8E700E6738A /* Sources */,
-				88B3489F2EB1F8E700E6738A /* Frameworks */,
-				88B348A02EB1F8E700E6738A /* Resources */,
+				88ECFC6D2EC4AD4300E80317 /* Sources */,
+				88ECFC6E2EC4AD4300E80317 /* Frameworks */,
+				88ECFC6F2EC4AD4300E80317 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				88B34BF62EC0849A00E6738A /* Baemin */,
+				88ECFC732EC4AD4300E80317 /* Baemin */,
 			);
 			name = Baemin;
 			packageProductDependencies = (
-				88B349172EB1FDA600E6738A /* SnapKit */,
-				88B34C0C2EC0C91800E6738A /* Then */,
+				88ECFCBF2EC4AE4100E80317 /* SnapKit */,
+				88ECFCC22EC4AE7400E80317 /* Then */,
 			);
 			productName = Baemin;
-			productReference = 88B348A22EB1F8E700E6738A /* Baemin.app */;
+			productReference = 88ECFC712EC4AD4300E80317 /* Baemin.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		88B3489A2EB1F8E700E6738A /* Project object */ = {
+		88ECFC692EC4AD4300E80317 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					88B348A12EB1F8E700E6738A = {
+					88ECFC702EC4AD4300E80317 = {
 						CreatedOnToolsVersion = 26.0.1;
-						LastSwiftMigration = 2600;
 					};
 				};
 			};
-			buildConfigurationList = 88B3489D2EB1F8E700E6738A /* Build configuration list for PBXProject "Baemin" */;
+			buildConfigurationList = 88ECFC6C2EC4AD4300E80317 /* Build configuration list for PBXProject "Baemin" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 88B348992EB1F8E700E6738A;
+			mainGroup = 88ECFC682EC4AD4300E80317;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				88B349162EB1FDA600E6738A /* XCRemoteSwiftPackageReference "SnapKit" */,
-				88B34C0B2EC0C91800E6738A /* XCRemoteSwiftPackageReference "Then" */,
+				88ECFCBE2EC4AE4100E80317 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				88ECFCC12EC4AE7400E80317 /* XCRemoteSwiftPackageReference "Then" */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 88B348992EB1F8E700E6738A;
+			productRefGroup = 88ECFC722EC4AD4300E80317 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				88B348A12EB1F8E700E6738A /* Baemin */,
+				88ECFC702EC4AD4300E80317 /* Baemin */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		88B348A02EB1F8E700E6738A /* Resources */ = {
+		88ECFC6F2EC4AD4300E80317 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -133,7 +141,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		88B3489E2EB1F8E700E6738A /* Sources */ = {
+		88ECFC6D2EC4AD4300E80317 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -143,12 +151,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		88B348B62EB1F8E900E6738A /* Debug */ = {
+		88ECFC852EC4AD4500E80317 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -168,19 +175,17 @@
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		88B348B72EB1F8E900E6738A /* Release */ = {
+		88ECFC862EC4AD4500E80317 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -206,7 +211,7 @@
 			};
 			name = Release;
 		};
-		88B348B82EB1F8E900E6738A /* Debug */ = {
+		88ECFC872EC4AD4500E80317 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -269,7 +274,7 @@
 			};
 			name = Debug;
 		};
-		88B348B92EB1F8E900E6738A /* Release */ = {
+		88ECFC882EC4AD4500E80317 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -328,20 +333,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		88B3489D2EB1F8E700E6738A /* Build configuration list for PBXProject "Baemin" */ = {
+		88ECFC6C2EC4AD4300E80317 /* Build configuration list for PBXProject "Baemin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				88B348B82EB1F8E900E6738A /* Debug */,
-				88B348B92EB1F8E900E6738A /* Release */,
+				88ECFC872EC4AD4500E80317 /* Debug */,
+				88ECFC882EC4AD4500E80317 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88B348B52EB1F8E900E6738A /* Build configuration list for PBXNativeTarget "Baemin" */ = {
+		88ECFC842EC4AD4500E80317 /* Build configuration list for PBXNativeTarget "Baemin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				88B348B62EB1F8E900E6738A /* Debug */,
-				88B348B72EB1F8E900E6738A /* Release */,
+				88ECFC852EC4AD4500E80317 /* Debug */,
+				88ECFC862EC4AD4500E80317 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -349,7 +354,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		88B349162EB1FDA600E6738A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		88ECFCBE2EC4AE4100E80317 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -357,7 +362,7 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		88B34C0B2EC0C91800E6738A /* XCRemoteSwiftPackageReference "Then" */ = {
+		88ECFCC12EC4AE7400E80317 /* XCRemoteSwiftPackageReference "Then" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Then";
 			requirement = {
@@ -368,17 +373,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		88B349172EB1FDA600E6738A /* SnapKit */ = {
+		88ECFCBF2EC4AE4100E80317 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 88B349162EB1FDA600E6738A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 88ECFCBE2EC4AE4100E80317 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		88B34C0C2EC0C91800E6738A /* Then */ = {
+		88ECFCC22EC4AE7400E80317 /* Then */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 88B34C0B2EC0C91800E6738A /* XCRemoteSwiftPackageReference "Then" */;
+			package = 88ECFCC12EC4AE7400E80317 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 88B3489A2EB1F8E700E6738A /* Project object */;
+	rootObject = 88ECFC692EC4AD4300E80317 /* Project object */;
 }
