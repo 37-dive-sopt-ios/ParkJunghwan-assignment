@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  sopt-37th-03Seminar
+//
+//  Created by 박정환 on 11/20/25.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+BASE_URL = http:/$()/15.164.129.239
