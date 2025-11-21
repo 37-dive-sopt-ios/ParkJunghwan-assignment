@@ -11,20 +11,32 @@ final class BaseTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
         setupTabBar()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
     private func setupTabBar() {
-        let homeVC = UINavigationController(rootViewController: HomeViewController())
+        let homeVC = HomeViewController()
         homeVC.tabBarItem = UITabBarItem(
             title: "홈",
             image: UIImage(systemName: "house"),
             selectedImage: UIImage(systemName: "house.fill")
         )
 
-        let shoppingVC = ShoppingViewController()
+        let shoppingVC = ServerViewController()
         shoppingVC.tabBarItem = UITabBarItem(
-            title: "장보기·쇼핑",
+            title: "서버",
             image: UIImage(systemName: "bag"),
             selectedImage: UIImage(systemName: "bag.fill")
         )

@@ -117,8 +117,8 @@ final class WelcomeViewController: UIViewController {
     
     @objc
     private func goToMain() {
-        let homeVC = HomeViewController()
-        navigationController?.pushViewController(homeVC, animated: true)
+        let BaseVC = BaseTabBarController()
+        navigationController?.pushViewController(BaseVC, animated: true)
     }
     
     @objc
