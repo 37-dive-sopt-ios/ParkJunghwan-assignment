@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       // 2. UIWindow 객체를 windowScene 기반으로 생성
         let window = UIWindow(windowScene: windowScene)
       // 3. LoginViewController를 루트로 하는 UINavigationController 생성
-        let vc = UINavigationController(rootViewController: LoginViewController())
+        let vc = UINavigationController(rootViewController: LoginViewController_Combine())
       // 4. 생성한 UINavigationController를 윈도우의 루트 뷰 컨트롤러로 설정
         window.rootViewController = vc
       // 5. SceneDelegate의 window 프로퍼티에 생성한 윈도우 할당
