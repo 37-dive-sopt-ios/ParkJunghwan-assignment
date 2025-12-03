@@ -4,48 +4,47 @@
 //
 //  Created by 박정환 on 10/11/25.
 //
-/*
+
 import UIKit
 
 import SnapKit
 import Then
+import Combine
 
 protocol BackButtonDelegate: AnyObject {
     func didTapBackButton()
 }
 
-final class WelcomeViewController: UIViewController {
-    
-    var name: String?
-    
+final class WelcomeViewController_Combine: UIViewController {
+
+    var viewModel: WelcomeViewModel?
     weak var delegate: BackButtonDelegate?
-    
-    // MARK: - UI Components
+
+    private var cancellables = Set<AnyCancellable>()
 
     private let navigationBar = CustomNavigationBar(title: "대체 뼈짐 누가 시켰어??")
-    
     private let welcomeImageView = UIImageView()
-    
     private let welcomeTitle = UILabel()
-    
     private let welcomeLabel = UILabel()
-    
     private lazy var backToLoginButton = UIButton()
-    
-    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         navigationItem.hidesBackButton = true
-        
-        self.view.backgroundColor = .white
+
+        setUI()
         setLayout()
         setStyle()
-        
-        bindID()
+        bind()
     }
     
+    
     // MARK: - Layout
+    
+    private func setUI() {
+        self.view.backgroundColor = .white
+    }
 
     private func setLayout() {
         [navigationBar, welcomeImageView, welcomeTitle, welcomeLabel, backToLoginButton].forEach {
@@ -109,25 +108,26 @@ final class WelcomeViewController: UIViewController {
             $0.addTarget(self, action: #selector(backToLoginButtonDidTap), for: .touchUpInside)
         }
     }
-    
-    private func bindID() {
-        guard let username = name else { return }
-        self.welcomeLabel.text = "\(username)님 반가워요!"
+
+    private func bind() {
+        guard let viewModel = viewModel else { return }
+        viewModel.$username
+            .receive(on: RunLoop.main)
+            .sink { [weak self] name in
+                self?.welcomeLabel.text = "\(name)님 반가워요!"
+            }
+            .store(in: &cancellables)
     }
-    
+
     @objc
     private func backToLoginButtonDidTap() {
         delegate?.didTapBackButton()
-        
-        if self.navigationController == nil {
-            self.dismiss(animated: true)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
     }
 }
 
 #Preview() {
-    WelcomeViewController()
+    let vc = WelcomeViewController_Combine()
+    vc.viewModel = WelcomeViewModel(username: "OO님")
+    return vc
 }
-*/

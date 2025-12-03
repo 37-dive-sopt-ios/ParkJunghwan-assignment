@@ -4,56 +4,37 @@
 //
 //  Created by 박정환 on 10/11/25.
 //
-/*
+
 import UIKit
 
 import SnapKit
 import Then
+import Combine
 
-final class LoginViewController: UIViewController {
-    
-    // MARK: - UI Components
-        
+final class LoginViewController_Combine: UIViewController, BackButtonDelegate {
+
+    private let viewModel = LoginViewModel()
+    private var cancellables = Set<AnyCancellable>()
+
+    // UI Components
     private let navigationBar = CustomNavigationBar(title: "이메일 또는 아이디로 계속")
-
     private let idTextField = UITextField()
-    
     private let passwordTextField = UITextField()
-    
     private let loginButton = UIButton()
-    
     private let clearButton = UIButton()
-    
     private let eyeButton = UIButton()
-    
     private let findAccountLabel = UILabel()
-    
     private let findAccountButton = UIButton(type: .system)
-    
     private let findAccountStackView = UIStackView()
-    
-    
-    // MARK: - Life Cycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+
         setUI()
         setStyle()
         setLayout()
-
-        // 텍스트필드 편집 이벤트 감지
-        idTextField.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
-        idTextField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
-        passwordTextField.addTarget(self, action: #selector(textFieldEditingDidBegin(_:)), for: .editingDidBegin)
-        passwordTextField.addTarget(self, action: #selector(textFieldEditingDidEnd(_:)), for: .editingDidEnd)
-
-        // 로그인 버튼 초기 상태 비활성화
-        loginButton.isEnabled = false
-        
-        // 입력값 변경 시 로그인 버튼 상태 갱신
-        idTextField.addTarget(self, action: #selector(updateLoginButtonState), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(updateLoginButtonState), for: .editingChanged)
+        bind()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -178,87 +159,111 @@ final class LoginViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
     }
-    
-    // MARK: - Navigation
-    
-    private func pushToWelcomeVC() {
-        let welcomeViewController = WelcomeViewController()
-        welcomeViewController.name = idTextField.text
-        welcomeViewController.delegate = self
 
-        self.navigationController?.pushViewController(welcomeViewController, animated: true)
-    }
+    // MARK: - Bindings
     
-    // MARK: - @objc
+    private func bind() {
+        // 텍스트 변화 -> ViewModel로 전달
+        idTextField.textPublisher
+            .compactMap { $0 }
+            .assign(to: \.value, on: viewModel.id)
+            .store(in: &cancellables)
+
+        passwordTextField.textPublisher
+            .compactMap { $0 }
+            .assign(to: \.value, on: viewModel.password)
+            .store(in: &cancellables)
+
+        passwordTextField.textPublisher
+            .compactMap { $0 }
+            .sink { [weak self] text in
+                guard let self = self else { return }
+                let hasText = !(text?.isEmpty ?? true)
+                self.clearButton.isHidden = !hasText
+                self.eyeButton.isHidden = !hasText
+            }
+            .store(in: &cancellables)
+
+        // 로그인 버튼 활성화 상태 바인딩
+        viewModel.isLoginEnabled
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isEnabled in
+                self?.loginButton.isEnabled = isEnabled
+                self?.loginButton.backgroundColor = isEnabled ? .mint500 : .gray200
+            }
+            .store(in: &cancellables)
+
+        NotificationCenter.default.publisher(for: UITextField.textDidBeginEditingNotification, object: passwordTextField)
+            .sink { [weak self] _ in
+                self?.passwordTextField.layer.borderColor = UIColor.baeminBlack.cgColor
+                self?.passwordTextField.layer.borderWidth = 2
+                self?.clearButton.isHidden = false
+                self?.eyeButton.isHidden = false
+            }
+            .store(in: &cancellables)
+
+        NotificationCenter.default.publisher(for: UITextField.textDidEndEditingNotification, object: passwordTextField)
+            .sink { [weak self] _ in
+                self?.passwordTextField.layer.borderColor = UIColor.gray200.cgColor
+                self?.clearButton.isHidden = true
+                self?.eyeButton.isHidden = true
+            }
+            .store(in: &cancellables)
+
+        // 로그인 성공 → Welcome 이동
+        viewModel.loginSuccess
+            .receive(on: RunLoop.main)
+            .sink { [weak self] username in
+                let vc = WelcomeViewController_Combine()
+                vc.viewModel = WelcomeViewModel(username: username)
+                vc.delegate = self
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+            .store(in: &cancellables)
+    }
+
+    // MARK: - Actions
     
     @objc
     private func loginButtonDidTap() {
-        pushToWelcomeVC()
+        viewModel.loginButtonTapped()
     }
-    
-    // 텍스트가 활성화 되면 버튼 보이게
-    @objc
-    private func textFieldEditingDidBegin(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.baeminBlack.cgColor
-        textField.layer.borderWidth = 2
-        if textField == passwordTextField {
-            clearButton.isHidden = false
-            eyeButton.isHidden = false
-        }
-    }
-    
-    // 텍스트가 비활성화 되면 버튼 안 보이게
-    @objc
-    private func textFieldEditingDidEnd(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor.gray200.cgColor
-        if textField == passwordTextField {
-            clearButton.isHidden = true
-            eyeButton.isHidden = true
-        }
-    }
-    
-    // 눈 버튼 작동
-    @objc
-    private func passwordVisibilityButtonDidTap(_ sender: UIButton) {
-        passwordTextField.isSecureTextEntry.toggle()
-        let imageName = passwordTextField.isSecureTextEntry ? "eye_slash" : "eye"
-        sender.setImage(UIImage(named: imageName), for: .normal)
-    }
-    
-    // 지우기 버튼 작동
+
     @objc
     private func clearPasswordField() {
         passwordTextField.text = ""
     }
-    
+
+    @objc
+    private func passwordVisibilityButtonDidTap() {
+        passwordTextField.isSecureTextEntry.toggle()
+    }
+
     @objc
     private func findAccountButtonTapped() {
-        print("계정 찾기 버튼 탭됨")
+        // TODO: 계정 찾기 화면으로 이동 로직 추가
+        print("계정 찾기 버튼 탭")
     }
-    
-    // 로그인 버튼 활성화
-    @objc
-    private func updateLoginButtonState() {
-        let isIDFilled = !(idTextField.text?.isEmpty ?? true)
-        let isPasswordFilled = !(passwordTextField.text?.isEmpty ?? true)
-        
-        loginButton.isEnabled = isIDFilled && isPasswordFilled
-        loginButton.backgroundColor = loginButton.isEnabled ? .mint500 : .gray200
-    }
-}
 
- // MARK: - UI State Updates
-
-extension LoginViewController: BackButtonDelegate {
     func didTapBackButton() {
-        // 텍스트 초기화
+        view.endEditing(true)
+
         idTextField.text = ""
         passwordTextField.text = ""
-        updateLoginButtonState()
+
+        loginButton.isEnabled = false
+        loginButton.backgroundColor = .gray200
+
+        idTextField.layer.borderColor = UIColor.gray200.cgColor
+        passwordTextField.layer.borderColor = UIColor.gray200.cgColor
+        idTextField.layer.borderWidth = 1
+        passwordTextField.layer.borderWidth = 1
+
+        clearButton.isHidden = true
+        eyeButton.isHidden = true
     }
 }
 
 #Preview() {
-    LoginViewController()
+    LoginViewController_Combine()
 }
-*/
